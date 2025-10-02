@@ -76,6 +76,8 @@ public class User {
         this.birthDate = birthDate;
     }
 
+    
+
     public User(Long id, String name, String email, String phone, LocalDate birthDate, String password) {
         this.id = id;
         this.name = name;
