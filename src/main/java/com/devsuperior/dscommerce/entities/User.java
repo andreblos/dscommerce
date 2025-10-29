@@ -70,13 +70,22 @@ public class User implements UserDetails {
         this.phone = phone;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public Boolean hasRole(String roleName){
+        for  (Role role : roles) {
+            if (role.getAuthority().equals(roleName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     @Override
@@ -118,15 +127,6 @@ public class User implements UserDetails {
 
     public void addRole(Role role){
         roles.add(role);
-    }
-
-    public boolean hasRole(String roleName) {
-        for (Role role : roles) {
-            if (role.getAuthority().equals(roleName)) {
-                return true;
-            }
-        }
-        return false;
     }
 
         public User(Long id, String name, String email, String phone, LocalDate birthDate, String password) {
